@@ -307,9 +307,17 @@ Value getblock(const Array& params, bool fHelp)
         throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Block not found");
 
     CBlock block;
-    CBlockIndex* pblockindex = mapBlockIndex[hash];
-    ReadBlockFromDisk(block, pblockindex);
+	Object ret;
+	try
+	{
+		CBlockIndex* pblockindex = mapBlockIndex[hash];
+		ReadBlockFromDisk(block, pblockindex);
+		ret = blockToJSON(block, pblockindex); 
+	}
 
+    catch (std::exception &e) {
+        throw JSONRPCError(RPC_DESERIALIZATION_ERROR, "getblock failed");
+    }
     if (!fVerbose)
     {
         CDataStream ssBlock(SER_NETWORK, PROTOCOL_VERSION);
@@ -318,7 +326,7 @@ Value getblock(const Array& params, bool fHelp)
         return strHex;
     }
 
-    return blockToJSON(block, pblockindex);
+    return ret;
 }
 
 Value gettxoutsetinfo(const Array& params, bool fHelp)
