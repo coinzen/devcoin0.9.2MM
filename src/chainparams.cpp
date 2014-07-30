@@ -29,10 +29,10 @@ public:
         // The message start string is designed to be unlikely to occur in normal data.
         // The characters are rarely used upper ASCII, not valid as UTF-8, and produce
         // a large 4-byte int at any alignment.
-        pchMessageStart[0] = 'd';
-        pchMessageStart[1] = 'e';
-        pchMessageStart[2] = 'v';
-        pchMessageStart[3] = '-';
+        pchMessageStart[0] = 'D';
+        pchMessageStart[1] = 'E';
+        pchMessageStart[2] = 'V';
+		pchMessageStart[3] = ':';
         vAlertPubKey = ParseHex("04fc9702847840aaf195de8442ebecedf5b095cdbb9bc716bda9110971b28a49e0ead8564ff0db22209e0374782c093bb899692d524e9d6a6956e7c5ecbcd68284");
         nDefaultPort = 52333;
         nRPCPort = 52332;
@@ -158,8 +158,8 @@ public:
         genesis.nNonce   = 3085127155;
 
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("0x0000000062558fec003bcbf29e915cddfc34fa257dc87573f28e4520d1c7c11e"));
-        assert(genesis.hashMerkleRoot == uint256("0xe61339a40aa4e90e983fe0d64cf09eed5fa1e6eac227b6761f06ac7af1929baf"));
+        //assert(hashGenesisBlock == uint256("0x0000000062558fec003bcbf29e915cddfc34fa257dc87573f28e4520d1c7c11e"));
+       // assert(genesis.hashMerkleRoot == uint256("0xe61339a40aa4e90e983fe0d64cf09eed5fa1e6eac227b6761f06ac7af1929baf"));
 
         vSeeds.push_back(CDNSSeedData("devtome.com", "dvcstable01.devtome.com"));
         vSeeds.push_back(CDNSSeedData("dvcnode.org", "dvcstable01.dvcnode.org"));
@@ -202,7 +202,7 @@ public:
         hashGenesisBlock = genesis.GetHash();
         nDefaultPort = 52444;
         strDataDir = "regtest";
-        assert(hashGenesisBlock == uint256("0x0f9188f13cb7b2c71f2a335e3a4fc328bf5beb436012afca590b1a11466e2206"));
+        //assert(hashGenesisBlock == uint256("0x0f9188f13cb7b2c71f2a335e3a4fc328bf5beb436012afca590b1a11466e2206"));
 
         vSeeds.clear();  // Regtest mode doesn't have any DNS seeds.
     }
